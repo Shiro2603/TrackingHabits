@@ -1,12 +1,10 @@
-package com.example.trackinghabits.ui.mainScreen
+package com.example.trackinghabits.ui.root
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Scaffold
-import androidx.compose.ui.Modifier
+import com.example.trackinghabits.ui.mainScreen.MainScreen
 import com.example.trackinghabits.ui.theme.TrackingHabitsTheme
 
 class MainActivity : ComponentActivity() {
