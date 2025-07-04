@@ -19,9 +19,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.core.os.bundleOf
 import androidx.navigation.NavHostController
 import com.example.trackinghabits.domain.model.Habit
 import com.example.trackinghabits.ui.createScreen.viewModel.CreateViewModel
+import com.google.firebase.Firebase
+import com.google.firebase.analytics.analytics
 import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -33,6 +36,7 @@ fun CreateScreen(
     var habitName by remember { mutableStateOf("") }
     var habitDescription by remember { mutableStateOf("") }
     val viewModel: CreateViewModel = koinViewModel()
+    val analytics = remember { Firebase.analytics }
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -97,6 +101,7 @@ fun CreateScreen(
                             description = habitDescription
                         )
                     )
+                    analytics.logEvent("habit_created", bundleOf("habit_name" to habitName))
                     navController.popBackStack()
                 }
             ) {

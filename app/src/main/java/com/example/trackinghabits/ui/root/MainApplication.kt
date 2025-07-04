@@ -5,6 +5,7 @@ import com.example.trackinghabits.di.dataModule
 import com.example.trackinghabits.di.interactorModule
 import com.example.trackinghabits.di.repositoryModule
 import com.example.trackinghabits.di.viewModelModule
+import com.google.firebase.FirebaseApp
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -12,6 +13,7 @@ class MainApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        FirebaseApp.initializeApp(this@MainApplication)
         startKoin {
             androidContext(this@MainApplication)
             modules(dataModule, interactorModule, repositoryModule, viewModelModule)
