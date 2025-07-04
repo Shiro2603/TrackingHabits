@@ -12,7 +12,6 @@ class MainApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-
         startKoin {
             androidContext(this@MainApplication)
             modules(dataModule, interactorModule, repositoryModule, viewModelModule)

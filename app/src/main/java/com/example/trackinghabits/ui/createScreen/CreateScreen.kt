@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -19,15 +18,21 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import com.example.trackinghabits.domain.model.Habit
+import com.example.trackinghabits.ui.createScreen.viewModel.CreateViewModel
+import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CreateScreen() {
+fun CreateScreen(
+    navController: NavHostController
+) {
 
     var habitName by remember { mutableStateOf("") }
     var habitDescription by remember { mutableStateOf("") }
+    val viewModel: CreateViewModel = koinViewModel()
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -84,7 +89,16 @@ fun CreateScreen() {
                     .fillMaxWidth()
                     .padding(bottom = 15.dp)
                     .padding(horizontal = 10.dp),
-                onClick = {}
+                onClick = {
+                    viewModel.addHabit(
+                        Habit(
+                            id = null,
+                            habitName = habitName,
+                            description = habitDescription
+                        )
+                    )
+                    navController.popBackStack()
+                }
             ) {
                 Text(
                     text = "Создать"
@@ -95,8 +109,8 @@ fun CreateScreen() {
     }
 }
 
-@Preview(showBackground = true)
-@Composable()
-private fun CreateScreenPreview() {
-    CreateScreen()
-}
+//@Preview(showBackground = true)
+//@Composable()
+//private fun CreateScreenPreview() {
+//    CreateScreen()
+//}

@@ -25,7 +25,7 @@ fun MainScreen() {
         }
 
         composable(Screen.Create.route) {
-            CreateScreen()
+            CreateScreen(navController)
         }
     }
 

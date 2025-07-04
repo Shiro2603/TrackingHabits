@@ -2,11 +2,9 @@ package com.example.trackinghabits.data.habit.impl
 
 import com.example.trackinghabits.data.converters.HabitDbConverter
 import com.example.trackinghabits.data.db.AppDatabase
-import com.example.trackinghabits.data.db.entity.HabitEntity
 import com.example.trackinghabits.data.habit.HabitRepository
 import com.example.trackinghabits.domain.model.Habit
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 
 class HabitRepositoryImpl(
